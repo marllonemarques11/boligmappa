@@ -1,0 +1,15 @@
+﻿CREATE TABLE IF NOT EXISTS tbUser (
+	id serial PRIMARY KEY,
+	userName VARCHAR ( 50 ) UNIQUE NOT NULL,
+	userPosts INT NOT NULL,
+	userTodos INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS tbPost (
+	id serial PRIMARY KEY,
+	userName VARCHAR ( 50 ) UNIQUE NOT NULL,
+	hasFrenchTag BOOLEAN NOT NULL,
+	hasFictionTag BOOLEAN NOT NULL,
+	hasMorethanTwoReactions BOOLEAN NOT NULL
+);
+
