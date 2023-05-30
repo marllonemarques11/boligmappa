@@ -11,6 +11,7 @@ namespace DT.Infra.Repository
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Todo> Todos { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -21,8 +22,17 @@ namespace DT.Infra.Repository
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<User>();
-            modelBuilder.Entity<Post>();
+            modelBuilder.Entity<User>()
+            .HasMany(e => e.Posts)
+            .WithOne(e => e.User)
+            .HasForeignKey(e => e.userId)
+            .IsRequired();
+
+            modelBuilder.Entity<User>()
+            .HasMany(e => e.Todos)
+            .WithOne(e => e.User)
+            .HasForeignKey(e => e.userId)
+            .IsRequired();
         }
     }
 }
