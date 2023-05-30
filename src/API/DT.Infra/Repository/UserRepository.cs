@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DT.Domain.Entities;
 using DT.Infra.Contracts;
+using DT.Domain.Enums;
 
 namespace DT.Infra.Repository
 {
@@ -15,11 +16,11 @@ namespace DT.Infra.Repository
 
         }
 
-        public async Task<IEnumerable<User>> GetUsersByPostCount(int postsCount)
+        public async Task<IEnumerable<User>> GetUsersByPostCount()
         {
             try
             {
-                return await Task.FromResult(_dbContext.Users.Where(p => p.userPosts == postsCount).ToList());
+                return await Task.FromResult(_dbContext.Users.Where(p => p.userPosts > 2));
             }
             catch (System.Exception ex)
             {
@@ -28,11 +29,11 @@ namespace DT.Infra.Repository
             }
         }
 
-        public async Task<IEnumerable<User>> GetUsersByCardType(string cardType)
+        public async Task<IEnumerable<User>> GetUsersByCardType()
         {
             try
             {
-                return await Task.FromResult(_dbContext.Users.Where(p => p.cardType == cardType).ToList());
+                return await Task.FromResult(_dbContext.Users.Where(p => p.cardType == CardType.Mastercard.ToString()));
             }
             catch (System.Exception ex)
             {

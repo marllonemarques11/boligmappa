@@ -8,7 +8,7 @@ namespace DT.Infra.Contracts
 {
     public interface IUserRepository: IBaseRepository<User>
     {
-        Task <IEnumerable<User>> GetUsersByPostCount(int postsCount);
-        Task <IEnumerable<User>> GetUsersByCardType(string cardType);
+        Task <IEnumerable<User>> GetUsersByPostCount();
+        Task <IEnumerable<User>> GetUsersByCardType();
     }
 }
