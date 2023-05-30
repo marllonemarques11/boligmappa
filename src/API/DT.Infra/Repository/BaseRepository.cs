@@ -11,7 +11,7 @@ namespace DT.Infra.Repository
     public class BaseRepository<TEntity> : IBaseRepository<TEntity>
     where TEntity : class
     {
-        private readonly AppDbContext _dbContext;
+        public readonly AppDbContext _dbContext;
 
         public BaseRepository(AppDbContext dbContext)
         {
@@ -28,5 +28,9 @@ namespace DT.Infra.Repository
             await _dbContext.Set<TEntity>().AddAsync(entity);
             await _dbContext.SaveChangesAsync();
         }
+
+        // public async Task<IEnumerable<TEntity>> GetByIdRange(List<int> ids){
+        //     return await _dbContext.Set<TEntity>().Where(p => ids.Contains(p.id)).ToList();
+        // }
     }
 }

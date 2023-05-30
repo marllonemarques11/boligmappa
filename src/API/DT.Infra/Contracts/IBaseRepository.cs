@@ -10,6 +10,7 @@ namespace DT.Infra.Contracts
     where TEntity : class
     {
         Task<IEnumerable<TEntity>> GetAllAsync();
+        // Task<IEnumerable<TEntity>> GetByIdRange(List<int> ids);
         Task CreateAsync(TEntity entity);
     }
 }
