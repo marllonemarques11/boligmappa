@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DT.BusinessRules.Contracts;
-using DT.BusinessRules.Rules;
 
 namespace DT.EntryPoints.Controllers
 {
@@ -14,14 +13,15 @@ namespace DT.EntryPoints.Controllers
     {
         private readonly IUserRules _userRules;
 
-        public UserController(UserRules userRules)
+        public UserController(IUserRules userRules)
         {
             _userRules = userRules;
         }
 
         [HttpGet]
-        [Route("GetUsersTodos")]
-        public async Task<IActionResult> GetUsersTodos() {
+        [Route("/GetUsersTodos")]
+        public async Task<IActionResult> GetUsersTodos()
+        {
             try
             {
                 return Ok(await _userRules.GetUsersTodos());
@@ -34,8 +34,9 @@ namespace DT.EntryPoints.Controllers
         }
 
         [HttpGet]
-        [Route("GetUsersPosts")]
-        public async Task<IActionResult> GetUsersPosts() {
+        [Route("/GetUsersPosts")]
+        public async Task<IActionResult> GetUsersPosts()
+        {
             try
             {
                 return Ok(await _userRules.GetUsersPosts());
@@ -45,7 +46,7 @@ namespace DT.EntryPoints.Controllers
                 Console.WriteLine(ex.Message);
                 throw;
             }
-            
+
         }
     }
 }
