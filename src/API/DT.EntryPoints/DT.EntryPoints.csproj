@@ -5,18 +5,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0-preview.4.23259.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5"/>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0-preview.4.23259.5"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4"/>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1"/>
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.0"/>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DT.Infra\DT.Infra.csproj" />
-    <ProjectReference Include="..\DT.BusinessRules\DT.BusinessRules.csproj" />
+    <ProjectReference Include="..\DT.Infra\DT.Infra.csproj"/>
+    <ProjectReference Include="..\DT.BusinessRules\DT.BusinessRules.csproj"/>
   </ItemGroup>
 </Project>

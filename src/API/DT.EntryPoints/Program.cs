@@ -4,7 +4,16 @@ using DT.BusinessRules.Contracts;
 using DT.BusinessRules.Rules;
 using DT.Infra.Repository;
 using DT.Infra.Contracts;
+using DT.Infra.ExternalServices;
+using Microsoft.Extensions.Hosting;
 var builder = WebApplication.CreateBuilder(args);
+
+IHost _host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices(services =>{
+        services.AddHostedService<Worker>();
+    }).Build();
+
+_host.Run();
 
 // Add services to the container.
 

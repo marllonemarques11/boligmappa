@@ -23,9 +23,9 @@ namespace DT.Infra.Repository
             return await _dbContext.Set<TEntity>().ToListAsync();
         }
 
-        public async Task CreateAsync(TEntity entity)
+        public async Task CreateRangeAsync(List<TEntity> entities)
         {
-            await _dbContext.Set<TEntity>().AddAsync(entity);
+            await _dbContext.Set<TEntity>().AddRangeAsync(entities);
             await _dbContext.SaveChangesAsync();
         }
 

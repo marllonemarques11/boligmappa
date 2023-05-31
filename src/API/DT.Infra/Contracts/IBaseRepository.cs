@@ -11,6 +11,6 @@ namespace DT.Infra.Contracts
     {
         Task<IEnumerable<TEntity>> GetAllAsync();
         // Task<IEnumerable<TEntity>> GetByIdRange(List<int> ids);
-        Task CreateAsync(TEntity entity);
+        Task CreateRangeAsync(List<TEntity> entities);
     }
 }
