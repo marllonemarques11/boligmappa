@@ -17,5 +17,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DT.Infra\DT.Infra.csproj" />
+    <ProjectReference Include="..\DT.BusinessRules\DT.BusinessRules.csproj" />
   </ItemGroup>
 </Project>
