@@ -5,12 +5,16 @@ using DT.BusinessRules.Rules;
 using DT.Infra.Repository;
 using DT.Infra.Contracts;
 using DT.Infra.ExternalServices;
+using DT.Infra.ExternalServices.DummyService.Contracts;
+using DT.Infra.ExternalServices.DummyService.Services;
 using Microsoft.Extensions.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 
+//Background service hosting
 IHost _host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>{
-        services.AddHostedService<Worker>();
+        services.AddHostedService<Worker>()
+        .AddSingleton<IDummyService, DummyService>();
     }).Build();
 
 _host.Run();
