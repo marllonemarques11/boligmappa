@@ -22,6 +22,8 @@ namespace DT.Infra.ExternalServices.DummyService.Models
     [Serializable]
     public class PostDescription
     {
+        [JsonProperty("id")]
+        public int id { get; set; }
         [JsonProperty("userId")]
         public int userId { get; set; }
         [JsonProperty("reactions")]

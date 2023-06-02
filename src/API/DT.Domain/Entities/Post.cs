@@ -9,7 +9,7 @@ namespace DT.Domain.Entities
         public string body { get; set; }
         public bool hasFrenchTag { get; set; }
         public bool hasFictionTag { get; set; }
-        public bool hasMoreThanOneReaction { get; set; }
+        public bool hasMoreThanTwoReaction { get; set; }
         public int userId { get; set; }
         public User User { get; set; }
     }

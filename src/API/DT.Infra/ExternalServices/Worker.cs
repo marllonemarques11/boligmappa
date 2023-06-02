@@ -24,10 +24,23 @@ namespace DT.Infra.ExternalServices
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("worker running at: {time}", DateTimeOffset.UtcNow);
-            var test = await _dummyService.GetUsersAsync();
+            _logger.LogInformation("Initializing Dummy API requests");
 
-            _logger.LogInformation(test.desc[5].cardType);
+            _logger.LogInformation("getting users...");
+            var users = await _dummyService.GetUsersAsync();
+
+            _logger.LogInformation("getting posts...");
+            var posts = await _dummyService.GetPostsAsync();
+
+            _logger.LogInformation("getting todos...");
+            var todos = await _dummyService.GetTodosAsync();
+
+            _logger.LogInformation("filling database ...");
+
+            _logger.LogInformation("creating users ...");
+            _logger.LogInformation(users.desc[0].firstName);
+            // _userRepository.CreateRangeAsync();
+
             // await Task.Delay(1000, stoppingToken);
             _applicationLifetime.StopApplication();
         }
