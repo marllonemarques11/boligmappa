@@ -18,17 +18,20 @@ namespace DT.BusinessRules.Rules
         }
 
         //DRY Refactoting needed.
-        public async Task<List<string>> GetUsersTodos()
+        public async Task<Dictionary<string, IEnumerable<string>>> GetUsersTodos()
         {
             try
             {
                 IEnumerable<User> users = await _userRepository.GetUsersByPostCount();
 
                 var todos = (from user in users.ToList()
-                             from todo in user.Todos
-                             select todo);
+                             select new
+                             {
+                                key = user.userName,
+                                value = user.Todos.Select(p => p.todo)
+                             }).ToDictionary(p => p.key, p => p.value);
 
-                return await Task.FromResult(todos.ToList().Select(p => p.todo).ToList());
+                return await Task.FromResult(todos);
             }
             catch (System.Exception ex)
             {
@@ -37,17 +40,19 @@ namespace DT.BusinessRules.Rules
             }
         }
 
-        public async Task<List<string>> GetUsersPosts()
+        public async Task<Dictionary<string, IEnumerable<string>>> GetUsersPosts()
         {
             try
             {
                 IEnumerable<User> users = await _userRepository.GetUsersByCardType();
 
                 var posts = (from user in users.ToList()
-                             from post in user.Posts
-                             select post);
+                             select new{
+                                key = user.userName,
+                                value = user.Posts.Select(p => p.body)
+                             }).ToDictionary(p => p.key, p => p.value);
 
-                return await Task.FromResult(posts.ToList().Select(p => p.body).ToList());
+                return await Task.FromResult(posts);
             }
             catch (System.Exception ex)
             {

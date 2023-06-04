@@ -8,7 +8,7 @@ namespace DT.BusinessRules.Contracts
 {
     public interface IUserRules: IBaseRules<User>
     {
-        Task<List<string>> GetUsersTodos();
-        Task<List<string>> GetUsersPosts();
+        Task<Dictionary<string, IEnumerable<string>>> GetUsersTodos();
+        Task<Dictionary<string, IEnumerable<string>>> GetUsersPosts();
     }
 }
