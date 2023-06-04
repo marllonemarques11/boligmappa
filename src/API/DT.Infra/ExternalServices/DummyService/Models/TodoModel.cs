@@ -9,12 +9,6 @@ namespace DT.Infra.ExternalServices.DummyService.Models
     [Serializable]
     public class TodoModel
     {
-        [JsonProperty("total")]
-        public int total { get; set; }
-        [JsonProperty("skip")]
-        public int skip { get; set; }
-        [JsonProperty("limit")]
-        public int limit { get; set; }
         [JsonProperty("todos")]
         public List<TodoDescription> desc { get; set; }
         

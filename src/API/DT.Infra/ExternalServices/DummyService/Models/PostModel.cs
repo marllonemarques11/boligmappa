@@ -9,12 +9,6 @@ namespace DT.Infra.ExternalServices.DummyService.Models
     [Serializable]
     public class PostModel
     {
-        [JsonProperty("total")]
-        public int total { get; set; }
-        [JsonProperty("skip")]
-        public int skip { get; set; }
-        [JsonProperty("limit")]
-        public int limit { get; set; }
         [JsonProperty("posts")]
         public List<PostDescription> desc { get; set; }
     }

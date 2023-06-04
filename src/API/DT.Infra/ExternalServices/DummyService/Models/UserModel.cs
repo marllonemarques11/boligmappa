@@ -10,12 +10,6 @@ namespace DT.Infra.ExternalServices.DummyService.Models
     [Serializable]
     public class UserModel
     {
-        [JsonProperty("total")]
-        public int total { get; set; }
-        [JsonProperty("skip")]
-        public int skip { get; set; }
-        [JsonProperty("limit")]
-        public int limit { get; set; }
         [JsonProperty("users")]
         public List<UserDescription> desc { get; set; }
     }
