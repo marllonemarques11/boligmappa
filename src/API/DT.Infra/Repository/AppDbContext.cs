@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using System.Data;
 using Npgsql;
 using DT.Domain.Entities;
+using Microsoft.EntityFrameworkCore.Proxies;
 
 namespace DT.Infra.Repository
 {
@@ -16,6 +17,11 @@ namespace DT.Infra.Repository
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

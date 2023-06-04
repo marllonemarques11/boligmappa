@@ -11,6 +11,6 @@ namespace DT.Domain.Entities
         public bool hasFictionTag { get; set; }
         public bool hasMoreThanTwoReaction { get; set; }
         public int userId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
     }
 }
