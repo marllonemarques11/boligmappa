@@ -11,5 +11,6 @@ namespace DT.Infra.ExternalServices.DummyService.Contracts
         Task<UserModel> GetUsersAsync();
         Task<PostModel> GetPostsAsync();
         Task<TodoModel> GetTodosAsync();
+        Task SaveUsersAsync(UserModel userModel, PostModel postModel, TodoModel todoModel);
     }
 }

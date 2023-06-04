@@ -36,11 +36,10 @@ namespace DT.Infra.ExternalServices
             var todos = await _dummyService.GetTodosAsync();
 
             _logger.LogInformation("filling database ...");
+            await _dummyService.SaveUsersAsync(users, posts, todos);
 
             _logger.LogInformation("creating users ...");
-            _logger.LogInformation(users.desc[0].firstName);
-            // _userRepository.CreateRangeAsync();
-
+            
             // await Task.Delay(1000, stoppingToken);
             _applicationLifetime.StopApplication();
         }

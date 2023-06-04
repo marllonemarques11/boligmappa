@@ -6,6 +6,7 @@ using DT.Infra.Repository;
 using DT.Infra.Contracts;
 using DT.Infra.ExternalServices;
 using DT.Infra.ExternalServices.DummyService.Contracts;
+using DT.Infra.ExternalServices.DummyService.Data;
 using DT.Infra.ExternalServices.DummyService.Services;
 using Microsoft.Extensions.Hosting;
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,10 @@ var builder = WebApplication.CreateBuilder(args);
 IHost _host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>{
         services.AddHostedService<Worker>()
-        .AddSingleton<IDummyService, DummyService>();
+        .AddSingleton<IUserDummyData, UserDummyData>()
+        .AddSingleton<IDummyService, DummyService>()
+        .AddDbContext<AppDbContext>(opt => 
+        opt.UseNpgsql(builder.Configuration.GetConnectionString("DummyDBConnection")));
     }).Build();
 
 _host.Run();

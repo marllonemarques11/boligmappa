@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DT.Domain.Entities;
 using DT.Infra.ExternalServices.DummyService.Contracts;
 using DT.Infra.ExternalServices.DummyService.Models;
+using DT.Infra.ExternalServices.DummyService.Utils;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
@@ -13,10 +15,12 @@ namespace DT.Infra.ExternalServices.DummyService.Services
 {
     public class DummyService: IDummyService
     {
+        private IUserDummyData _userDummyData;
         HttpClient client = new HttpClient();
 
-        public DummyService()
+        public DummyService(IUserDummyData userDummyData)
         {
+            _userDummyData = userDummyData;
             client.BaseAddress = new Uri("https://dummyjson.com/");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
@@ -61,6 +65,29 @@ namespace DT.Infra.ExternalServices.DummyService.Services
             }
 
             return await Task.FromResult(todoModel);
+        }
+
+        public async Task SaveUsersAsync(UserModel userModel, PostModel postModel, TodoModel todoModel){
+            try
+            {
+                Converter c = new Converter();
+                List<User> users = c.UserModelToEntity(userModel.desc, postModel.desc, todoModel.desc);
+                List<Post> posts = c.PostModelToEntity(userModel.desc, postModel.desc, todoModel.desc);
+                List<Todo> todos = c.TodoModelToEntity(todoModel.desc);
+
+                foreach (var user in users)
+                {
+                    user.Posts = posts.Where(p => p.userId == user.id).ToList();
+                    user.Todos = todos.Where(p => p.userId == user.id).ToList();
+                }
+
+                await _userDummyData.CreateRangeAsync(users);
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
         }
     }
 }
