@@ -2,11 +2,11 @@ namespace DT.Domain.Enums
 {
     public enum CardType
     {
-        AmericanExpress,
-        Visa,
-        Mastercard,
-        Maestro,
+        americanexpress,
+        visa,
+        mastercard,
+        maestro,
         jcb,
-        Bankcard
+        bankcard
     }
 }
