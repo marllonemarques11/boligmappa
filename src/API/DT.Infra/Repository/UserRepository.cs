@@ -33,7 +33,7 @@ namespace DT.Infra.Repository
         {
             try
             {
-                return await Task.FromResult(_dbContext.Users.Where(p => p.cardType == CardType.Mastercard.ToString()));
+                return await Task.FromResult(_dbContext.Users.Where(p => p.cardType == CardType.mastercard.ToString()));
             }
             catch (System.Exception ex)
             {
