@@ -10,5 +10,7 @@ namespace DT.Infra.ExternalServices.DummyService.Contracts
     where TEntity : class
     {
         Task CreateRangeAsync(List<TEntity> entities);
+
+        Task<TEntity> GetFirstUserAsync();
     }
 }

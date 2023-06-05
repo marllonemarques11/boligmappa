@@ -28,9 +28,5 @@ namespace DT.Infra.Repository
             await _dbContext.Set<TEntity>().AddRangeAsync(entities);
             await _dbContext.SaveChangesAsync();
         }
-
-        // public async Task<IEnumerable<TEntity>> GetByIdRange(List<int> ids){
-        //     return await _dbContext.Set<TEntity>().Where(p => ids.Contains(p.id)).ToList();
-        // }
     }
 }

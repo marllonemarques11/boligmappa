@@ -26,20 +26,22 @@ namespace DT.Infra.ExternalServices
         {
             _logger.LogInformation("Initializing Dummy API requests");
 
-            _logger.LogInformation("getting users...");
-            var users = await _dummyService.GetUsersAsync();
+            _logger.LogInformation("Check if DB is already filled");
+            if (!await _dummyService.CheckIfUserExists())
+            {
+                _logger.LogInformation("getting users...");
+                var users = await _dummyService.GetUsersAsync();
 
-            _logger.LogInformation("getting posts...");
-            var posts = await _dummyService.GetPostsAsync();
+                _logger.LogInformation("getting posts...");
+                var posts = await _dummyService.GetPostsAsync();
 
-            _logger.LogInformation("getting todos...");
-            var todos = await _dummyService.GetTodosAsync();
+                _logger.LogInformation("getting todos...");
+                var todos = await _dummyService.GetTodosAsync();
+                
+                _logger.LogInformation("filling database ...");
+                await _dummyService.SaveUsersAsync(users, posts, todos);
+            }
 
-            _logger.LogInformation("filling database ...");
-            await _dummyService.SaveUsersAsync(users, posts, todos);
-
-            _logger.LogInformation("creating users ...");
-            
             // await Task.Delay(1000, stoppingToken);
             _applicationLifetime.StopApplication();
         }

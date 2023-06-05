@@ -24,5 +24,10 @@ namespace DT.Infra.ExternalServices.DummyService.Data
             await _dbContext.Set<TEntity>().AddRangeAsync(entities);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<TEntity> GetFirstUserAsync()
+        {
+            return await Task.FromResult(_dbContext.Set<TEntity>().FirstOrDefault());
+        }
     }
 }

@@ -89,5 +89,11 @@ namespace DT.Infra.ExternalServices.DummyService.Services
                 throw;
             }
         }
+
+        public async Task<bool> CheckIfUserExists(){
+            var user =  await _userDummyData.GetFirstUserAsync();
+
+            return user != null;
+        }
     }
 }
