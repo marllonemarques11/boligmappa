@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DT.BusinessRules.Contracts;
+using DT.EntryPoints.Models;
 
 namespace DT.EntryPoints.Controllers
 {
@@ -24,7 +25,17 @@ namespace DT.EntryPoints.Controllers
         {
             try
             {
-                return Ok(await _userRules.GetUsersTodos());
+                List<TodoModel> models = new List<TodoModel>();
+                Dictionary<string, IEnumerable<string>> result = await _userRules.GetUsersTodos();
+
+                foreach (var item in result)
+                {
+                    TodoModel model = new TodoModel();
+                    model.userName = item.Key;
+                    model.todos = item.Value;
+                    models.Add(model);
+                }
+                return Ok(models);
             }
             catch (System.Exception ex)
             {
@@ -39,7 +50,17 @@ namespace DT.EntryPoints.Controllers
         {
             try
             {
-                return Ok(await _userRules.GetUsersPosts());
+                List<PostModel> models = new List<PostModel>();
+                Dictionary<string, IEnumerable<string>> result = await _userRules.GetUsersPosts();
+                
+                foreach (var item in result)
+                {
+                    PostModel model = new PostModel();
+                    model.userName = item.Key;
+                    model.posts = item.Value;
+                    models.Add(model);
+                }
+                return Ok(models);
             }
             catch (System.Exception ex)
             {

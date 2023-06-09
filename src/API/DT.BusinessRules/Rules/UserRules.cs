@@ -48,9 +48,9 @@ namespace DT.BusinessRules.Rules
 
                 var posts = (from user in users.ToList()
                              select new{
-                                key = user.userName,
-                                value = user.Posts.Select(p => p.body)
-                             }).ToDictionary(p => p.key, p => p.value);
+                                userName = user.userName,
+                                posts = user.Posts.Select(p => p.body)
+                             }).ToDictionary(p => p.userName, p => p.posts);
 
                 return await Task.FromResult(posts);
             }
